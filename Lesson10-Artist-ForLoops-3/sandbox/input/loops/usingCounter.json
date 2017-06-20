@@ -1,0 +1,27 @@
+{
+	"name": "UsingCounter",
+	"children": [
+		{
+
+			"name": "GetCounter", // counter is introduced in The Artist 3 Level 6
+			"weight": 60,
+			"children": [
+				{
+					"name": "GetRelationBetweenCounterandLoop",
+					"weight": 60
+				}, 
+				{
+					"name": "DontGetRelationBetweenCounterandLoop",
+					"weight": 40
+				}
+			]			
+		},	
+		{
+			"name": "DontGetCounter",
+			"weight": 40
+	
+}
+
+	]
+		
+}

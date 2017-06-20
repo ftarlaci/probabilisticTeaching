@@ -1,0 +1,26 @@
+{
+	"name": "Nesting",
+	"children": [
+		{
+		  "name": "CanDifferentiateInnerOuter", // knows which shape to draw first
+		   "weight": 60,
+		   "children": [
+		   		{
+	  				"name": "GetSequenceAndLoop",
+	  				"weight": 70
+	  			},
+	  			{
+	  				"name": "NotConfusedByLoops",
+	  				"weight": 50	
+	  			}
+		   ]
+		},
+		 {
+	  		"name": "CannotDifferentiateInnerOuter",
+			"weight": 40
+	  	},
+
+	 ]
+}
+
+	  
