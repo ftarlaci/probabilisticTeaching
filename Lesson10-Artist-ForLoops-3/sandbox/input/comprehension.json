@@ -6,7 +6,7 @@
 			"weight": 50,
 			"children": [
 				{
-					"name": "GetNestedVariousShapes",
+					"name": "GetNestedShapes",
 					"weight": 60
 				},
 				{
@@ -20,7 +20,7 @@
 			"weight": 50,
 			"children": [
 				{
-					"name": "DontGetNestedVariousShapes",
+					"name": "DontGetShapes",
 					"weight": 20
 				},
 				{

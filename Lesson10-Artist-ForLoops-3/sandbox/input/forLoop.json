@@ -10,11 +10,11 @@
 	  			"weight": 60,
 	  			"children": [
 	  				{
-	  					"name": "GetDifferentSideCount", // for each nested shape in the polygon
+	  					"name": "GetSideCount", // for each nested triangle in the shape
 	  					"weight": 60
 	  				},
 	  				{
-	  					"name": "GetArithmeticOnSides",
+	  					"name": "GetDirectionOnSides",
 	  					"weight": 65
 	  				},
 	  			],
@@ -28,7 +28,7 @@
 			  			"weight": 40
 			  		},
 			  		{
-  						"name": "DontGetArithmeticOnSides",
+  						"name": "DontGetDirectionOnSides",
   						"weight": 35
   					}
   				]

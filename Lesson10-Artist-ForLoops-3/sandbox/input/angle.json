@@ -2,7 +2,7 @@
 	"name":"Angle",
 	"children": [
 		{
-			"name":"GetEqualSidedPolygon",
+			"name":"GetAngles",
 			"weight":80,
 			"children": [
 				{
@@ -16,7 +16,7 @@
 			]
 		},
 		{
-			"name":"DontGetEqualSidedPolygon",
+			"name":"DontGetAngles",
 			"weight":20
 		}
 	]

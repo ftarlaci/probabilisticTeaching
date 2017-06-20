@@ -1,8 +1,8 @@
 {
-	"name": "DrawPolygon",
+	"name": "DrawTriangle",
 	"children": [
 		{
-		"name": "CanDrawPolygon",
+		"name": "CanDrawTriangle",
 		"weight": 80,
 		"children": [
 			{
@@ -22,7 +22,7 @@
 		]
 	},
 	{
-		"name": "CannotDrawPolygon",
+		"name": "CannotDrawTriangles",
 		"weight": 25,
 		"children": [			
 	  		{
