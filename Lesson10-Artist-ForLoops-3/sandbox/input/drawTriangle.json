@@ -2,37 +2,31 @@
 	"name": "DrawTriangle",
 	"children": [
 		{
-		"name": "CanDrawTriangle",
-		"weight": 80,
-		"children": [
-			{
-				"name": "UnderstoodCounter",
-				"weight": 80,
-				"children": [
-					{
-						"name": "UnderstoodLoop",
-						"weight": 60,
-					},
-					{
-						"name": "UnderstoodVariables",
-						"weight": 70
-					}
-				]
-			}
-		]
-	},
-	{
-		"name": "CannotDrawTriangles",
-		"weight": 25,
-		"children": [			
-	  		{
-	  			"name": "DontGetSequenceAndLoop",
-	  			"weight": 30
-	  		},
-	  		{
-	  			"name": "ConfusedByLoops",
-	  			"weight": 50
-	  		},
+			"name": "CanDrawTriangle",
+			"weight": 80,
+			"children": [
+				{
+					"name": "UnderstoodCounter",
+					"weight": 80
+				},
+				{
+					"name": "UnderstoodLoop",
+					"weight": 60,
+				},
+			]
+		},
+		{
+			"name": "CannotDrawTriangles",
+			"weight": 20,
+			"children": [			
+		  		{
+		  			"name": "DontGetSequenceAndLoop",
+		  			"weight": 30
+		  		},
+		  		{
+		  			"name": "ConfusedByLoops",
+		  			"weight": 50
+		  		},
 		]
 	}
 ]

@@ -8,40 +8,32 @@
 	  		{
 	  			"name": "GetRepeat", 
 	  			"weight": 60,
-	  			"children": [
-	  				{
-	  					"name": "GetSideCount", // for each nested triangle in the shape
-	  					"weight": 60
-	  				},
-	  				{
-	  					"name": "GetDirectionOnSides",
-	  					"weight": 65
-	  				},
-	  			],
 	  		}
-  			{
-  				"name": "DontgetLoops",
-  				"weight": 40,
-  				"children": [	  					
-			  		{
-			  			"name": "DontGetSideCount",
-			  			"weight": 40
-			  		},
-			  		{
-  						"name": "DontGetDirectionOnSides",
-  						"weight": 35
-  					}
-  				]
-	  			
-	  		},
-	  		
-	  		
-	  	]
+			{
+				"name": "GetSideCount", // for each nested triangle in the shape
+				"weight": 60
+			},
+			{
+				"name": "GetDirectionOnSides",
+				"weight": 40
+			},
+	  	],
 	  },
 	  {
-	  	"name": "DontGetRepeat", 
-	  	"weight": 40
-	  },
-	  
-	]
-}
+		"name": "DontgetLoops",
+		"weight": 40,
+		"children": [	  					
+			{
+				"name": "DontGetSideCount",
+				"weight": 40
+			},
+			{
+				"name": "DontGetDirectionOnSides",
+				"weight": 35
+			}
+		]
+		
+	}
+]
+
+}	  

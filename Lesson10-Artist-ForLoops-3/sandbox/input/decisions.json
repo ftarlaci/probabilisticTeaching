@@ -7,7 +7,6 @@
 	"strategy",
 	"drawTriangle",
 	"leftRight",
-	"invariances",
-	"variables",
-	"SkippedVideo"
+	"invariance",
+	"skippedLevelVideo"
 ]
