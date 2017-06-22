@@ -10,6 +10,8 @@ import ast
 
 NUMPROGRAMS = 10000
 
+
+#load the decision trees and generate code based on random decisions. 
 def main():
 	decisionTrees = loadDecisionTrees()
 	countMap = {}
