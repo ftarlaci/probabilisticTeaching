@@ -26,7 +26,18 @@ def main():
 		countTree(countMap, labelMap, decisions, codeText)
 
 
-
+#walks the tree to see fif there is anything in it; if so, adds them to the countmap and labelmap
+def countTree(countMap, labelMap, decisions, tree):
+	decisionstring = getDecisionString(decisions)
+	treeString = str(tree)
+	if not treeString in countMap:
+		countMap[treeString] = 0
+	countMap[treeString] += 1
+	if not treeString in labelMap:
+		labelMap[treeString] = {}
+	if not decisionstring in labelMap[treeString]:
+		labelMap[treeString][decisionstring] = 0
+	labelMap[treeString][decisionstring] += 1
 
 
 # load decision .json files as input 
@@ -38,3 +49,34 @@ def loadDecisionTrees():
 		tree = json.load(open(filePath))
 		trees.append(tree)
 	return trees	
+
+
+def labelProbability(labelMap, treeString, count):
+	decisionCount = {}
+	decisions = labelMap[treeString]
+	for decisionSet in decisions:
+		for eachDecision in decisionSet:
+			if not eachDecision in decisionCount:
+				decisionCount[eachDecision] = 0.0
+			decisionCount[eachDecision] += 1
+	for key in decisionCount:
+		decisionCount[key] /= count
+	return decisionCount
+
+def decisionString(decisions):
+	decisionList = list(decisions)
+	decisionList.sort()
+	decisionString = ''
+	for eachDecision in decisionList:
+		decisionString += eachDecision + '\n'
+	return decisionString
+
+def collectDecisions(decisionTrees):
+	decisions = []
+	for tree in decisionTrees:
+		decisions.extend(choose(tree))  #chose in collectDecisions
+		if 'NoPlan' in decisions
+	return decisions
+
+# GENERATE CODE 
+
