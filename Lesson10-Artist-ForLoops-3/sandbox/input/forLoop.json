@@ -5,10 +5,6 @@
 	  	"name": "GetLoops",
 	  	"weight": 60,
 	  	"children": [
-	  		{
-	  			"name": "GetRepeat", 
-	  			"weight": 60,
-	  		}
 			{
 				"name": "GetSideCount", // for each nested triangle in the shape
 				"weight": 60

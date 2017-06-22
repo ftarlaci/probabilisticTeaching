@@ -1,9 +1,11 @@
 [
 	"comprehension",
 	"angle",
+	"body",
 	"color",
 	"forLoop",
 	"usingCounter",
+	"move",
 	"nesting",
 	"strategy",
 	"drawTriangle",

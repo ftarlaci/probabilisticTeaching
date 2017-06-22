@@ -1,0 +1,13 @@
+{
+	"name":"Move",
+	"children": [
+		{
+			"name":"Move60",
+			"weight": 70
+		},
+		{
+			"name":"MoveDefault",
+			"weight": 30
+		}
+	]
+}

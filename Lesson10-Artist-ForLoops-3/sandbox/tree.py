@@ -93,5 +93,17 @@ class Tree:
 			string += 'UsingCounter '
 			string += self.children[0].rootNode + '\n'
 
+		if self.rootNode == 'Color':
+			string += 'Color '
+			string += self.children[0].rootNode + '\n'
+
+		if self.rootNode == 'Move':
+			string += 'Move '
+			string += self.children[0].rootNode + '\n'
+
+		if self.rootNode == 'Body':
+			string += 'Body '
+			string += self.children[0].rootNode + '\n'
+
 		return string
 

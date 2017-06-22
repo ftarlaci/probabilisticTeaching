@@ -1,0 +1,27 @@
+{
+	"name":"Body",
+	"children": [
+		{
+			"name":"GetBody",
+			"weight":80,
+			"children": [
+				{
+					"name":"GetBodyOrder",
+					"weight":80
+				},
+				{
+					"name":"DontGetBodyOrder",
+					"weight":20
+				}
+			]
+		},
+		{
+			"name":"OneBlockBody",
+			"weight":20
+		},
+		{
+			"name":"BodyConfusion",
+			"weight":3
+		}
+	]
+}
