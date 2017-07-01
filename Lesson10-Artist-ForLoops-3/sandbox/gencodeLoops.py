@@ -79,6 +79,7 @@ def decisionString(decisions):
 	return decisionString
 
 
+#collects decisions from files if "no plan" is not used
 def collectDecisions(decisionTrees):
 	decisions = []
 	for tree in decisionTrees:
@@ -88,8 +89,7 @@ def collectDecisions(decisionTrees):
 	return decisions
 
 
-# GENERATE CODE 
-
+# Generates the code for the game based on decisions reflected through input files
 def generateCode(decisions):
 	block = Tree('Block')
 	if 'AddColor' in decisions:
@@ -300,7 +300,8 @@ def pickChild(children)
 	bias = []
 	for child in children
 		bias.append(float(child['weight']))
-	prob = np.random.choise(children, prob = prob)
+	prob = np.array(bias) / sum(bias)
+	return np.random.choise(children, prob = prob)
 
 
 
