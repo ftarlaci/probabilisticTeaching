@@ -1,4 +1,8 @@
 #generate code for Lesson 10, Course 3 - Artist 
+# Make a predefined tree
+# Turn tree into code, print code
+# Decisions for course 3
+# For 1 set of decisions generate and print code
 
 import random
 import json
@@ -8,7 +12,7 @@ import operator
 from htmlGenerator import *
 import ast
 
-NUMPROGRAMS = 10000
+NUMPROGRAMS = 1000000
 
 
 #load the decision trees and generate code based on random decisions. 
@@ -51,6 +55,7 @@ def loadDecisionTrees():
 	return trees	
 
 
+#probability of decisions 
 def labelProbability(labelMap, treeString, count):
 	decisionCount = {}
 	decisions = labelMap[treeString]
@@ -63,6 +68,8 @@ def labelProbability(labelMap, treeString, count):
 		decisionCount[key] /= count
 	return decisionCount
 
+
+
 def decisionString(decisions):
 	decisionList = list(decisions)
 	decisionList.sort()
@@ -71,19 +78,22 @@ def decisionString(decisions):
 		decisionString += eachDecision + '\n'
 	return decisionString
 
+
 def collectDecisions(decisionTrees):
 	decisions = []
 	for tree in decisionTrees:
-		decisions.extend(choose(tree))  #chose in collectDecisions
-		if 'NoPlan' in decisions
+		decisions.extend(choose(tree))  
+		if 'NoPlan' in decisions:
+			return decisions
 	return decisions
+
 
 # GENERATE CODE 
 
 def generateCode(decisions):
 	block = Tree('Block')
 	if 'AddColor' in decisions:
-		colorBlocj = getColor(decisions)
+		colorBlock = getColor(decisions)
 		block.addChild(colorBlock)
 	if 'ClockwisePlan' in decisions:
 		if 'ClockwiseTurn' in decisions:
@@ -96,6 +106,8 @@ def generateCode(decisions):
 	block.normalize()
 	return block
 
+
+
 def getColor(decisions):
 	block = Tree('Color')
 	if 'AddRandomColor' in decisions:
@@ -104,22 +116,26 @@ def getColor(decisions):
 		block.addChild(Tree('Random'))
 	return block
 
+
+#if left/right can be distinguished and there is no confusion, creates the first turn of the player
 def generateFirstTurn(decisions):
 	left = not 'LeftRightConfusion' in decisions
 	andgle = 90
 	if 'GetAngles' in decisions:
 		angle = 60
 		if random.random() < 0.5:
-			angle = 30
+			angle = 20
 
 	if 'Invariance' in decisions:
 		left = not left
 		angle = 360 - angle
 
-	code = Tree(getTurnString(left))
+	code = Tree(leftOrRight(left))
 	code.addChild(Tree(str(angle)))
 	return code
 
+
+#generates the loop when loop is understood and chosen in the course. 
 def generateLoop(decisions):
 	if 'GetLoop' in decisions:
 		num = getLoopN(decisions)
@@ -145,14 +161,18 @@ def generateLoop(decisions):
 			code.addChild(bodyCode)
 		return code
 
+
+#operates if nesting is not understood by the student
 def doesnotGetNesting(decisions):
 	if 'DontGetNesting' in decisions:
 		if 'GetBody' in decisions:
 			return True
 	return False
 
+
+#generates the body and its movement through the body input file. 
 def generateBody(decisions):
-	if 'GetBody' ind decisions:
+	if 'GetBody' in decisions:
 		body = Tree('Block')
 		if 'GetBodyOrder' in decisions:
 			body.addChild(generateMove(decisions))
@@ -169,6 +189,8 @@ def generateBody(decisions):
 	if 'BodyConfusion' in decisions:
 		return generateRandomCode(decisions, 0)
 
+
+#generates the move reading input in the move.json and appends the child generated to the tree
 def generateMove(decisions):
 	code = Tree('Move')
 	if 'Move60' in decisions:
@@ -177,6 +199,7 @@ def generateMove(decisions):
 		code.addChild(Tree(str(90)))
 	return code
 
+
 def getBodyNum(decisions):
 	if 'NoRepeat' in decisions:
 		return 1
@@ -184,12 +207,16 @@ def getBodyNum(decisions):
 		return 3
 	return random.choice([2, 4])
 
+
+
 def getLoopN(decisions):
 	if 'GetSideCount' in decisions:
 		return 3
 	if 'DontGetSideCount' in decisions:
 		return random.choice([1, 2, 4])
 
+
+#allows the body turn to be made based on the strategy taken and angle invariance in decisions. 
 def generateBodyTurn(decisions):
 	left = 'CounterClockwisePlan' in decisions 
 	angle = getAngle(decisions)
@@ -197,10 +224,11 @@ def generateBodyTurn(decisions):
 		left = not left
 	if 'Angle360Invariance' in decisions:
 		left = not leftangle = 360 - angle
-	code = TRee(getTurnString(left))
+	code = Tree(leftOrRight(left))
 	code.addChild(Tree(str(angle)))
 	return code
 
+# reading the decisions in the strategy.json input file, generates an angle
 def getAngle(decisions):
 	if 'ThinkTriangle' in decisions:
 		return 90
@@ -211,12 +239,72 @@ def getAngle(decisions):
 	else:
 		return 60
 
-def getTurnString(left):
+def leftOrRight(left):
 	if left:
 		return 'TurnLeft'
 	return 'TurnRight'
 
-def generateRandomCode(decisions, treeDepth)
+
+#generates random code based on random probability and decisions given
+def generateRandomCode(decisions, treeDepth):
+	genRandom = random.random()
+	prob = 0.7 + depth * 0.3
+	if genRandom < prob:
+		return generateNode(decisions, treeDepth)
+	else:
+		code = Tree('Block')
+		code.addChild(generateNode(decisions, treeDepth))
+		code.addChild(generateNode(decisions, treeDepth + 1))
+		return code
+
+
+# this function generates a random node by making random choises and 
+# angles and appends it to the tree 
+def generateNode(decisions, treeDepth):
+	if random.random() < 0.7:
+		if random.random() < 0.5:
+			code = Tree('Move')
+			load = random.choice([0, 100, 150, 200])
+			code.addChild(Tree(str(load)))
+			return code
+		else:
+			left = random.random()
+			turnAngle = random.choice(range(0, 45, 180))
+			code = Tree(leftOrRight(left))
+			code.addChild(Tree(str(angle)))
+			return code
+	else:
+		code = Tree('ForLoop')
+		num = random.randomNum(1, 5)
+		code.addChild(Tree(str(num)))
+		code.addChild(generateRandomCode(decisions, treeDepth + 1))
+		return code
+
 	
-#TODO make decisions,  generateRandomCode()
+# by seelcting children, the functions below make the code for the decision tree
+def choose(decisionTreeRec):
+	decisionTree = []
+
+	if not 'children' in decisionTreeRec:
+		return []
+
+	children = decisionTreeRec['children']
+	child = pickChild(children)
+	decisionTree.append(child['name'])
+	decisionTree.extend(choose(child))
+	return decisonTree
+
+
+
+def pickChild(children)
+	bias = []
+	for child in children
+		bias.append(float(child['weight']))
+	prob = np.random.choise(children, prob = prob)
+
+
+
+if __name__ == '__main__':
+	main()
+
 
