@@ -2,7 +2,7 @@
 	"name": "Nesting",
 	"children": [
 		{
-		  "name": "CanDifferentiateInnerOuter", // knows which shape to draw first
+		  "name": "CanDifferentiateInnerOuter",
 		   "weight": 60,
 		   "children": [
 		   		{
@@ -18,7 +18,7 @@
 		 {
 	  		"name": "CannotDifferentiateInnerOuter",
 			"weight": 40
-	  	},
+	  	}
 
 	 ]
 }

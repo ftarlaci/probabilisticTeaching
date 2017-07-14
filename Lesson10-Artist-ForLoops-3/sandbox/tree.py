@@ -1,11 +1,11 @@
 # abstract syntax tree (AST) to represent the structure of the source code
 
 class Tree:
-	def _init_(self, rootNode):
+	def __init__(self, rootNode):
 		self.rootNode = rootNode
 		self.children = []
 
-	def appendChild(self, child):
+	def addChild(self, child):
 		self.children.append(child)
 
 	def appendAt(self, child, index):

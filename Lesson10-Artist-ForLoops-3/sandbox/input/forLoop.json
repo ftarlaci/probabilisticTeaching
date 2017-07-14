@@ -6,14 +6,14 @@
 	  	"weight": 60,
 	  	"children": [
 			{
-				"name": "GetSideCount", // for each nested triangle in the shape
+				"name": "GetSideCount", 
 				"weight": 60
 			},
 			{
 				"name": "GetDirectionOnSides",
 				"weight": 40
-			},
-	  	],
+			}
+	  	]
 	  },
 	  {
 		"name": "DontgetLoops",

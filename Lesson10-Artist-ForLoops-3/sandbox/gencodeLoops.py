@@ -9,7 +9,7 @@ import json
 from tree import *
 import numpy as np
 import operator
-from htmlGenerator import *
+#from htmlGenerator import *
 import ast
 
 NUMPROGRAMS = 1000000
@@ -32,7 +32,7 @@ def main():
 
 #walks the tree to see if there is anything in it; if so, adds them to the countmap and labelmap
 def countTree(countMap, labelMap, decisions, tree):
-	decisionstring = getDecisionString(decisions)
+	decisionstring = decisionString(decisions)
 	treeString = str(tree)
 	if not treeString in countMap:
 		countMap[treeString] = 0
@@ -47,6 +47,7 @@ def countTree(countMap, labelMap, decisions, tree):
 # load decision .json files as input 
 def loadDecisionTrees():
 	trees = []
+	print open('input/decisions.json').read()
 	treeNames = json.load(open('input/decisions.json'))
 	for name in treeNames:
 		filePath = 'input/' + name + '.json'
@@ -120,7 +121,7 @@ def getColor(decisions):
 #if left/right can be distinguished and there is no confusion, creates the first turn of the player
 def generateFirstTurn(decisions):
 	left = not 'LeftRightConfusion' in decisions
-	andgle = 90
+	angle = 90
 	if 'GetAngles' in decisions:
 		angle = 60
 		if random.random() < 0.5:
@@ -223,7 +224,8 @@ def generateBodyTurn(decisions):
 	if 'LeftRightConfusion' in decisions:
 		left = not left
 	if 'Angle360Invariance' in decisions:
-		left = not leftangle = 360 - angle
+		left = not left 
+		angle = 360 - angle
 	code = Tree(leftOrRight(left))
 	code.addChild(Tree(str(angle)))
 	return code
@@ -248,7 +250,7 @@ def leftOrRight(left):
 #generates random code based on random probability and decisions given
 def generateRandomCode(decisions, treeDepth):
 	genRandom = random.random()
-	prob = 0.7 + depth * 0.3
+	prob = 0.7 + treeDepth * 0.3
 	if genRandom < prob:
 		return generateNode(decisions, treeDepth)
 	else:
@@ -271,11 +273,11 @@ def generateNode(decisions, treeDepth):
 			left = random.random()
 			turnAngle = random.choice(range(0, 45, 180))
 			code = Tree(leftOrRight(left))
-			code.addChild(Tree(str(angle)))
+			code.addChild(Tree(str(turnAngle)))
 			return code
 	else:
 		code = Tree('ForLoop')
-		num = random.randomNum(1, 5)
+		num = random.randint(1, 5)	# TODO
 		code.addChild(Tree(str(num)))
 		code.addChild(generateRandomCode(decisions, treeDepth + 1))
 		return code
@@ -292,20 +294,18 @@ def choose(decisionTreeRec):
 	child = pickChild(children)
 	decisionTree.append(child['name'])
 	decisionTree.extend(choose(child))
-	return decisonTree
+	return decisionTree
 
 
 
-def pickChild(children)
+def pickChild(children):
 	bias = []
-	for child in children
+	for child in children:
 		bias.append(float(child['weight']))
 	prob = np.array(bias) / sum(bias)
-	return np.random.choise(children, prob = prob)
+	return np.random.choice(children, p=prob)
 
 
 
 if __name__ == '__main__':
 	main()
-
-

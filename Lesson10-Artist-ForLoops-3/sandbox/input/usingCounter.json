@@ -3,7 +3,7 @@
 	"children": [
 		{
 
-			"name": "GetCounter", // counter is introduced in The Artist 3 Level 6
+			"name": "GetCounter",
 			"weight": 60,
 			"children": [
 				{
