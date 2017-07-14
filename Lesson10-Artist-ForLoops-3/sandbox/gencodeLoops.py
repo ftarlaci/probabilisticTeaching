@@ -12,7 +12,7 @@ import operator
 #from htmlGenerator import *
 import ast
 
-NUMPROGRAMS = 1000000
+NUMPROGRAMS = 1000
 
 
 #load the decision trees and generate code based on random decisions. 
