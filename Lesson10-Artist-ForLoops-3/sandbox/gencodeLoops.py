@@ -12,7 +12,7 @@ import operator
 #from htmlGenerator import *
 import ast
 
-NUMPROGRAMS = 1000
+NUMRUNS = 1000
 
 
 #load the decision trees and generate code based on random decisions. 
@@ -20,7 +20,7 @@ def main():
 	decisionTrees = loadDecisionTrees()
 	countMap = {}
 	labelMap = {}
-	for i in range(NUMPROGRAMS):
+	for i in range(NUMRUNS):
 		if i % 10000 == 0:
 			print i, len(countMap)
 		decisions = set(collectDecisions(decisionTrees))
